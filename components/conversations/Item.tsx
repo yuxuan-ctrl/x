@@ -2,7 +2,7 @@ import { EllipsisOutlined } from '@ant-design/icons';
 import { Dropdown, Tooltip, Typography } from 'antd';
 import type { MenuProps } from 'antd';
 import classnames from 'classnames';
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import type { DirectionType } from 'antd/es/config-provider';
 import pickAttrs from 'rc-util/lib/pickAttrs';
@@ -68,10 +68,7 @@ const ConversationsItem: React.FC<ConversationsItemProps> = (props) => {
 
   // ============================ Menu ============================
 
-  const [trigger, dropdownMenu, getPopupContainer] = useMemo(() => {
-    const { trigger, getPopupContainer, ...dropdownMenu } = menu || {};
-    return [trigger, dropdownMenu, getPopupContainer];
-  }, [menu]);
+  const { trigger, getPopupContainer, ...dropdownMenu } = menu || {};
 
   const renderMenuTrigger = (conversation: Conversation) => {
     const originTriggerNode = (
