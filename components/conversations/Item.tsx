@@ -20,6 +20,7 @@ export interface ConversationsItemProps
   };
   active?: boolean;
   onClick?: (info: Conversation) => void;
+  getPopupContainer?: (triggerNode: HTMLElement) => HTMLElement;
 }
 
 const stopPropagation: React.MouseEventHandler<HTMLSpanElement> = (e) => {
@@ -27,7 +28,17 @@ const stopPropagation: React.MouseEventHandler<HTMLSpanElement> = (e) => {
 };
 
 const ConversationsItem: React.FC<ConversationsItemProps> = (props) => {
-  const { prefixCls, info, className, direction, onClick, active, menu, ...restProps } = props;
+  const {
+    prefixCls,
+    info,
+    className,
+    direction,
+    onClick,
+    active,
+    menu,
+    getPopupContainer,
+    ...restProps
+  } = props;
 
   const domProps = pickAttrs(restProps, {
     aria: true,
@@ -109,6 +120,7 @@ const ConversationsItem: React.FC<ConversationsItemProps> = (props) => {
             trigger={['click']}
             disabled={disabled}
             onOpenChange={onOpenChange}
+            getPopupContainer={getPopupContainer}
           >
             {renderMenuTrigger(info)}
           </Dropdown>

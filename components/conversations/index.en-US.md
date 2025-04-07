@@ -43,6 +43,7 @@ Common props ref：[Common props](/docs/react/common-props)
 | groupable | If grouping is supported, it defaults to the `Conversation.group` field | boolean \| GroupableProps | - | - |
 | styles | Semantic structure styles | Record<'item', React.CSSProperties> | - | - |
 | classNames | Semantic structure class names | Record<'item', string> | - | - |
+| getPopupContainer | Custom popup container | (triggerNode: HTMLElement) => HTMLElement | - | - |
 
 ### Conversation
 
