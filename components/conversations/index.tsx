@@ -78,6 +78,12 @@ export interface ConversationsProps extends React.HTMLAttributes<HTMLUListElemen
    * @descEN Custom class name
    */
   rootClassName?: string;
+
+  /**
+   * @desc 自定义弹窗容器
+   * @descEN Custom popup container
+   */
+  getPopupContainer?: (triggerNode: HTMLElement) => HTMLElement;
 }
 
 const Conversations: React.FC<ConversationsProps> = (props) => {
@@ -94,6 +100,7 @@ const Conversations: React.FC<ConversationsProps> = (props) => {
     groupable,
     className,
     style,
+    getPopupContainer,
     ...restProps
   } = props;
 
@@ -168,6 +175,7 @@ const Conversations: React.FC<ConversationsProps> = (props) => {
             menu={typeof menu === 'function' ? menu(convInfo) : menu}
             active={mergedActiveKey === convInfo.key}
             onClick={onConversationItemClick}
+            getPopupContainer={getPopupContainer}
           />
         ));
 
