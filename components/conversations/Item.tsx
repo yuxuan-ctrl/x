@@ -17,10 +17,10 @@ export interface ConversationsItemProps
     trigger?:
       | React.ReactNode
       | ((conversation: Conversation, info: { originNode: React.ReactNode }) => React.ReactNode);
+    getPopupContainer?: (triggerNode: HTMLElement) => HTMLElement;
   };
   active?: boolean;
   onClick?: (info: Conversation) => void;
-  getPopupContainer?: (triggerNode: HTMLElement) => HTMLElement;
 }
 
 const stopPropagation: React.MouseEventHandler<HTMLSpanElement> = (e) => {
@@ -28,17 +28,7 @@ const stopPropagation: React.MouseEventHandler<HTMLSpanElement> = (e) => {
 };
 
 const ConversationsItem: React.FC<ConversationsItemProps> = (props) => {
-  const {
-    prefixCls,
-    info,
-    className,
-    direction,
-    onClick,
-    active,
-    menu,
-    getPopupContainer,
-    ...restProps
-  } = props;
+  const { prefixCls, info, className, direction, onClick, active, menu, ...restProps } = props;
 
   const domProps = pickAttrs(restProps, {
     aria: true,
@@ -78,9 +68,9 @@ const ConversationsItem: React.FC<ConversationsItemProps> = (props) => {
 
   // ============================ Menu ============================
 
-  const [trigger, dropdownMenu] = useMemo(() => {
-    const { trigger, ...dropdownMenu } = menu || {};
-    return [trigger, dropdownMenu];
+  const [trigger, dropdownMenu, getPopupContainer] = useMemo(() => {
+    const { trigger, getPopupContainer, ...dropdownMenu } = menu || {};
+    return [trigger, dropdownMenu, getPopupContainer];
   }, [menu]);
 
   const renderMenuTrigger = (conversation: Conversation) => {

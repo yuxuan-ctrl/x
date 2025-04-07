@@ -44,7 +44,6 @@ demo:
 | groupable | 是否支持分组, 开启后默认按 `Conversation.group` 字段分组 | boolean \| GroupableProps | - | - |
 | styles | 语义化结构 style | Record<'item', React.CSSProperties> | - | - |
 | classNames | 语义化结构 className | Record<'item', string> | - | - |
-| getPopupContainer | 自定义弹窗父容器 | (triggerNode: HTMLElement) => HTMLElement | - | - |
 
 ### Conversation
 
