@@ -70,7 +70,7 @@ const ConversationsItem: React.FC<ConversationsItemProps> = (props) => {
 
   const { trigger, ...dropdownMenu } = menu || {};
 
-  const getPopupContainer = dropdownMenu?.getPopupContainer || (() => document.body);
+  const getPopupContainer = dropdownMenu?.getPopupContainer;
 
   const renderMenuTrigger = (conversation: Conversation) => {
     const originTriggerNode = (
